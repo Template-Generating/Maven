@@ -6,13 +6,36 @@
     <groupId>group.id</groupId>
     <artifactId>app-name</artifactId>
     <version>0.0.1</version>
+    <properties>
+        <!-- compiler version -->
+        <maven.compiler.version>3.1</maven.compiler.version>
+        <!-- java version -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <!-- test lib version -->
+        <junit.jupiter.version>5.0.0-M3</junit.jupiter.version>
+        <junit.vintage.version>4.12.0-M3</junit.vintage.version>
+        <junit.platform.version>1.0.0-M3</junit.platform.version>
+        <!-- doc compiler version -->
+        <maven.doc.version>2.10.4</maven.doc.version>
+    </properties>
     <build>
         <plugins>
+            <!-- for compile java source to jar file -->
             <plugin>
-                <!-- for compile javadoc to jar file -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.version}</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+            <!-- for compile javadoc to jar file --> 
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.4</version>
+                <version>%{maven.doc.version}</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -25,10 +48,24 @@
         </plugins>
     </build>
     <dependencies>
+        <!-- test lib -->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-runner</artifactId>
+            <version>${junit.platform.version}</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>RELEASE</version>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>${junit.vintage.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>
