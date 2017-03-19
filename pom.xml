@@ -9,6 +9,10 @@
     <properties>
         <!-- compiler version -->
         <maven.compiler.version>3.1</maven.compiler.version>
+        <!-- doc version -->
+        <maven.doc.version>2.10.4</maven.doc.version>
+        <!-- source version -->
+        <maven.source.version>3.0.1</maven.source.version>
         <!-- java version -->
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -16,12 +20,10 @@
         <junit.jupiter.version>5.0.0-M3</junit.jupiter.version>
         <junit.vintage.version>4.12.0-M3</junit.vintage.version>
         <junit.platform.version>1.0.0-M3</junit.platform.version>
-        <!-- doc compiler version -->
-        <maven.doc.version>2.10.4</maven.doc.version>
     </properties>
     <build>
         <plugins>
-            <!-- for compile java source to jar file -->
+            <!-- compiler execution -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -31,7 +33,7 @@
                     <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
-            <!-- for compile javadoc to jar file --> 
+            <!-- javadocs execution -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -39,6 +41,20 @@
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- source execution -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven.source.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
                         <goals>
                             <goal>jar</goal>
                         </goals>
